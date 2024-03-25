@@ -1,12 +1,17 @@
 <template lang="pug">
     .support
         span Поддержка
-        img(src='@/assets/tg.svg' class='support-icon')
-        img(src='@/assets/wa.svg' class='support-icon')
+        CIcon(type='tg' class='support-icon')
+        CIcon(type='wa' class='support-icon')
 </template>
 
 <script lang="ts">
-export default {}
+import CIcon from '@/components/ui/CIcon.vue'
+export default {
+    components: {
+        CIcon
+    }
+}
 </script>
 
 <style scoped lang="scss">
