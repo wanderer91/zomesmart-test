@@ -1,5 +1,5 @@
 <template lang="pug">
-    div(class='content')
+    .content
         RouterView
 </template>
 
@@ -11,7 +11,9 @@ export default {}
 
 <style scoped lang="scss">
 .content {
-    max-width: 1600px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: var(--header-height);
     min-height: 100vh;
 }

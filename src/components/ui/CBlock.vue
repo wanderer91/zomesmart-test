@@ -9,13 +9,19 @@ export default {
         size: {
             type: String,
             default: 'small'
+        },
+        class: {
+            type: String,
+            default: ''
         }
     },
     computed: {
         block_class() {
             return {
+                [this.class]: true,
                 'block-small': this.size === 'small',
-                'block-big': this.size === 'big'
+                'block-big': this.size === 'big',
+                'block-mini': this.size === 'mini'
             }
         }
     }
@@ -31,6 +37,12 @@ export default {
 
     &-small {
         width: 430px;
+    }
+
+    &-mini {
+        width: 200px;
+        padding: 10px 12px;
+        border-radius: 6px;
     }
 
     &-big {

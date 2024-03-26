@@ -1,5 +1,5 @@
 <template lang="pug">
-    a(:href='url' class='link')
+    a(:href='url' class='link' :class="link_class" @click="handleClick")
         slot(name='content')
 </template>
 
@@ -9,6 +9,30 @@ export default {
         url: {
             type: String,
             default: '/'
+        },
+        color: {
+            type: String,
+            default: ''
+        },
+        anchor: {
+            type: Boolean,
+            default: false
+        }
+    },
+    emits: ['click'],
+    computed: {
+        link_class() {
+            return {
+                'link-grey': this.color === 'grey'
+            }
+        }
+    },
+    methods: {
+        handleClick(e: Event) {
+            if (!this.anchor) {
+                e.preventDefault()
+            }
+            this.$emit('click')
         }
     }
 }
@@ -32,6 +56,17 @@ export default {
 
     &:hover {
         color: var(--color-fourth-green);
+    }
+
+    &-grey {
+        &:link,
+        &:visited {
+            color: var(--color-dark-blue);
+        }
+
+        &:hover {
+            color: var(--color-fourth-green);
+        }
     }
 }
 </style>

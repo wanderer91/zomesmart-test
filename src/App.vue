@@ -1,17 +1,33 @@
 <script lang="ts">
 import NavBar from '@/components/Navbar.vue'
 import AppContent from '@/components/AppContent.vue'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/css/index.css'
+
+import { mapState } from 'pinia'
+import { useAppStore } from '@/stores'
+
 export default {
     components: {
         NavBar,
-        AppContent
+        AppContent,
+        Loading
+    },
+    computed: {
+        ...mapState(useAppStore, ['is_guest', 'is_loading'])
     }
 }
 </script>
 
 <template lang="pug">
-    NavBar
-    AppContent    
+    NavBar(:is_guest="is_guest")
+    AppContent
+    Loading(
+        v-model:active="is_loading"
+        :is-full-page="true"
+        color="var(--color-green)"
+        loader="dots"
+        )
 </template>
 
 <style lang="scss">

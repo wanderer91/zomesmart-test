@@ -27,6 +27,7 @@ export default {
 
 <style scoped lang="scss">
 .icon {
+    display: inline-block;
     width: 30px;
     height: 30px;
     background-repeat: no-repeat;
@@ -44,6 +45,18 @@ export default {
     &-eye {
         width: 25px;
         background-image: url('@/assets/eye.svg');
+    }
+
+    &-notifications {
+        width: 25px;
+        height: 25px;
+        background-image: url('@/assets/notifications.svg');
+    }
+
+    &-arrow {
+        width: 11px;
+        height: 5px;
+        background-image: url('@/assets/arrow.svg');
     }
 
     &-input {
