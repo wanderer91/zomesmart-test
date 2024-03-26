@@ -1,10 +1,11 @@
 <template lang="pug">
-    form(class='form' @submit.prevent="$emit('submit')")
+    form(class='form' :class="form_class" @submit.prevent="$emit('submit')")
         h1(class='form-title')
             slot(name='title')
         .form-subtitle
             slot(name='sub_title')
-        slot(name='content')
+        .form-content
+            slot(name='content')
 </template>
 
 <script lang="ts">
@@ -12,6 +13,16 @@ import CInput from '@/components/ui/CInput.vue'
 import CButton from '@/components/ui/CButton.vue'
 
 export default {
+    props: {
+        class: {
+            type: String,
+            default: ''
+        },
+        horiz: {
+            type: Boolean,
+            default: false
+        }
+    },
     components: {
         CInput,
         CButton
@@ -19,6 +30,14 @@ export default {
     emits: ['submit'],
     methods: {
         submit() {}
+    },
+    computed: {
+        form_class() {
+            return {
+                [this.class]: true,
+                'form-horizontal': this.horiz
+            }
+        }
     }
 }
 </script>
@@ -35,6 +54,13 @@ export default {
     &-title,
     &-subtitle {
         margin-bottom: 20px;
+    }
+
+    &-horizontal &-content {
+        flex-wrap: wrap;
+        display: flex;
+        gap: 20px;
+        align-items: center;
     }
 }
 </style>

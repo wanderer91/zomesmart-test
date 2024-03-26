@@ -17,13 +17,18 @@ export default {
         anchor: {
             type: Boolean,
             default: false
+        },
+        underline: {
+            type: Boolean,
+            default: false
         }
     },
     emits: ['click'],
     computed: {
         link_class() {
             return {
-                'link-grey': this.color === 'grey'
+                'link-grey': this.color === 'grey',
+                'link-underlined': this.underline
             }
         }
     },
@@ -66,6 +71,14 @@ export default {
 
         &:hover {
             color: var(--color-fourth-green);
+        }
+    }
+
+    &-grey.link-underlined {
+        border-bottom: 1px dashed var(--color-dark-blue);
+
+        &:hover {
+            border-color: var(--color-fourth-green);
         }
     }
 }

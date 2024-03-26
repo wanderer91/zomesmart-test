@@ -11,8 +11,11 @@
                 @input="$emit('update:modelValue', $event.target.value)"
                 v-model="value"
                 :required="required"
+                :disabled="disabled"
                 )
             CIcon(v-if="is_password_input" type='eye' class='icon-input' @click.prevent="togglePassword")
+            .input-note
+                slot(name='note')
 </template>
 
 <script lang="ts">
@@ -43,6 +46,10 @@ export default {
         required: {
             type: Boolean,
             default: true
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -98,9 +105,17 @@ export default {
 
         &-text {
             margin-bottom: 8px;
-            font-size: calc(var(--font-size) * 0.8);
-            color: var(--color-grey);
         }
+    }
+
+    &-label-text,
+    &-note {
+        font-size: calc(var(--font-size) * 0.8);
+        color: var(--color-grey);
+    }
+
+    &-note {
+        margin-top: 8px;
     }
 
     &-label-password & {

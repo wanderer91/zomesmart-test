@@ -5,7 +5,8 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
 
 import { mapState } from 'pinia'
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/app'
+import { useAuthStore } from '@/stores/auth'
 
 export default {
     components: {
@@ -14,7 +15,8 @@ export default {
         Loading
     },
     computed: {
-        ...mapState(useAppStore, ['is_guest', 'is_loading'])
+        ...mapState(useAppStore, ['loading']),
+        ...mapState(useAuthStore, ['is_guest'])
     }
 }
 </script>
@@ -23,7 +25,7 @@ export default {
     NavBar(:is_guest="is_guest")
     AppContent
     Loading(
-        v-model:active="is_loading"
+        v-model:active="loading"
         :is-full-page="true"
         color="var(--color-green)"
         loader="dots"

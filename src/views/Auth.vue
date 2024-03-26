@@ -8,7 +8,8 @@
 import CBlock from '@/components/ui/CBlock.vue'
 import AuthForm from '@/components/AuthForm.vue'
 import type { AuthData } from '@/types/auth'
-import { useAppStore } from '@/stores'
+import { useAuthStore } from '@/stores/auth'
+import { useAppStore } from '@/stores/app'
 
 export default {
     components: {
@@ -17,8 +18,13 @@ export default {
     },
     methods: {
         async login(data: AuthData) {
-            const { postLogin } = useAppStore()
+            const { SET_LOADING } = useAppStore()
+            const { postLogin } = useAuthStore()
+
+            SET_LOADING(true)
             await postLogin(data)
+            SET_LOADING(false)
+
             this.$router.push('/')
         }
     }

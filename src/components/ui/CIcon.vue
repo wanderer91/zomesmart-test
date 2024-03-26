@@ -59,6 +59,12 @@ export default {
         background-image: url('@/assets/arrow.svg');
     }
 
+    &-help {
+        width: 25px;
+        height: 25px;
+        background-image: url('@/assets/help.svg');
+    }
+
     &-input {
         position: absolute;
         right: 20px;

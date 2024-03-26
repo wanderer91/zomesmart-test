@@ -1,21 +1,16 @@
 import { defineStore } from 'pinia'
 import axios, { type AxiosResponse } from 'axios'
 import type { AuthData } from '@/types/auth'
-import type { CreateTokenData } from '@/types/token'
-import type { IStoreState } from '@/types/store'
+import type { CreateTokenData, RefreshTokenData } from '@/types/token'
+import type { IAuthState } from '@/types/auth'
 
-export const useAppStore = defineStore('app', {
-    state: (): IStoreState => ({ loading: false, user: { access_token: null, refresh_token: null, email: null } }),
+export const useAuthStore = defineStore('auth', {
+    state: (): IAuthState => ({ access_token: null, refresh_token: null, email: null }),
     getters: {
-        is_loading: (state) => state.loading,
-        email: (state) => state.user.email,
-        is_guest: (state) => !state.user.email,
-        access_token: (state) => state.user.access_token,
-        refresh_token: (state) => state.user.refresh_token
+        is_guest: (state): Boolean => !state.email
     },
     actions: {
         async postLogin(data: AuthData): Promise<CreateTokenData> {
-            this.SET_LOADING(true)
             const res = await (<Promise<AxiosResponse>>(
                 axios.post(`${import.meta.env.VITE_API_HOST}api/user/jwt/create/`, data)
             ))
@@ -24,8 +19,15 @@ export const useAppStore = defineStore('app', {
             this.SET_ACCESS_TOKEN(resData.access)
             this.SET_REFRESH_TOKEN(resData.refresh)
             this.SET_EMAIL(data.email)
-            this.SET_LOADING(false)
             return resData
+        },
+        async refreshToken() {
+            const res = await (<Promise<AxiosResponse>>(
+                axios.post(`${import.meta.env.VITE_API_HOST}api/user/jwt/refresh/`, { refresh: this.refresh_token })
+            ))
+
+            const resData: RefreshTokenData = res.data
+            this.SET_ACCESS_TOKEN(resData.access)
         },
         postLogout() {
             this.SET_EMAIL(null)
@@ -33,16 +35,13 @@ export const useAppStore = defineStore('app', {
             this.SET_REFRESH_TOKEN(null)
         },
         SET_ACCESS_TOKEN(token: string | null) {
-            this.user.access_token = token
+            this.access_token = token
         },
         SET_REFRESH_TOKEN(token: string | null) {
-            this.user.refresh_token = token
+            this.refresh_token = token
         },
         SET_EMAIL(email: string | null) {
-            this.user.email = email
-        },
-        SET_LOADING(loading: Boolean) {
-            this.loading = loading
+            this.email = email
         }
     },
     persist: true

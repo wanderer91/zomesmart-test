@@ -1,12 +1,18 @@
 <template lang="pug">
-    .content
+    .content(:style="{'padding-top': is_guest ? 0 : '100px'}")
         RouterView
 </template>
 
 <script lang="ts">
 import { RouterView } from 'vue-router'
+import { mapState } from 'pinia'
+import { useAuthStore } from '@/stores/auth'
 
-export default {}
+export default {
+    computed: {
+        ...mapState(useAuthStore, ['is_guest'])
+    }
+}
 </script>
 
 <style scoped lang="scss">

@@ -32,7 +32,7 @@ export default {
 <style scoped lang="scss">
 .btn {
     appearance: none;
-    padding: 18px 30px;
+    padding: 17px 30px;
     border-radius: 6px;
     font-weight: 600;
     color: var(--color-white);
@@ -41,6 +41,7 @@ export default {
     font-size: var(--font-size);
     border: none;
     transition: all var(--transition-duration) ease-in-out;
+    height: var(--input-height);
 
     &:not(&-disabled):hover {
         background-color: var(--color-second-green);

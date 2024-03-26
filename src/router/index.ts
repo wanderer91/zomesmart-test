@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Auth from '@/views/Auth.vue'
 import Home from '@/views/Home.vue'
 import NotFound from '@/views/NotFound.vue'
-import { useAppStore } from '@/stores'
+import { useAuthStore } from '@/stores/auth'
 import type { RouteLocationNormalized } from 'vue-router'
 
 const router = createRouter({
@@ -27,7 +27,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-    const { is_guest } = useAppStore()
+    const { is_guest } = useAuthStore()
     if (is_guest && to.name !== 'auth') {
         return '/auth'
     }

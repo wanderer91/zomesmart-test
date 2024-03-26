@@ -2,7 +2,7 @@
     .user
         CIcon(type='notifications')
         .user-email(@click="handleClick")
-            span {{ user.email }}
+            span {{ email }}
             CIcon(type='arrow')
             CBlock(v-show="show_user_dropdown" class='user-dropdown' size='mini')
                 CLink(color='grey' @click="logout" :anchor="true" url="#")
@@ -14,7 +14,7 @@ import CIcon from '@/components/ui/CIcon.vue'
 import CBlock from '@/components/ui/CBlock.vue'
 import CLink from '@/components/ui/CLink.vue'
 import { mapState } from 'pinia'
-import { useAppStore } from '@/stores'
+import { useAuthStore } from '@/stores/auth'
 
 export default {
     components: {
@@ -28,14 +28,14 @@ export default {
         }
     },
     computed: {
-        ...mapState(useAppStore, ['user'])
+        ...mapState(useAuthStore, ['email'])
     },
     methods: {
         handleClick() {
             this.show_user_dropdown = !this.show_user_dropdown
         },
         logout() {
-            const { postLogout } = useAppStore()
+            const { postLogout } = useAuthStore()
             postLogout()
             this.$router.push('/auth')
         }
