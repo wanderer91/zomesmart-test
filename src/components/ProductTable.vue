@@ -45,9 +45,9 @@
                     th(colspan='3' class='product-cell product-actions-cell product-actions-cell-selected')
                         span Для всех выделенных
                     th(class='product-cell product-actions-cell')
-                        CInput(size='small' placeholder='₽' mask="\\d|\\s" v-model="new_min_price" :value="new_min_price")
+                        CInput(size='small' placeholder='₽' mask="\\d|\\." v-model="new_min_price" :value="new_min_price")
                     th(class='product-cell product-actions-cell')
-                        CInput(size='small' placeholder='₽' mask="\\d|\\s" v-model="new_max_price" :value="new_max_price")
+                        CInput(size='small' placeholder='₽' mask="\\d|\\." v-model="new_max_price" :value="new_max_price")
                     th(class='product-cell product-actions-cell')    
             tbody        
                 tr(v-for="(pr, i) in products" class='product' :key="`product_${i + 1}`")
@@ -69,7 +69,7 @@
                         CInput(
                             size='small'
                             placeholder='₽'
-                            mask="\\d|\\s"
+                            mask="\\d|\\."
                             :value="pr.min_price"
                             v-model="pr.min_price"
                             )
@@ -77,7 +77,7 @@
                         CInput(
                             size='small'
                             placeholder='₽'
-                            mask="\\d|\\s"
+                            mask="\\d|\\."
                             :value="pr.max_price"
                             )
                     td(class='product-cell')

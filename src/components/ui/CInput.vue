@@ -9,6 +9,7 @@
                 :name="name"
                 :id="name"
                 :placeholder="placeholder"
+                @keydown="checkMask"
                 @input="onUpdateValue"
                 :required="required"
                 :disabled="disabled"
@@ -75,7 +76,7 @@ export default {
     },
     data() {
         return {
-            inputType: ''
+            inputType: '' as string
         }
     },
     beforeMount() {
@@ -107,14 +108,19 @@ export default {
         togglePassword() {
             this.inputType = this.inputType === 'password' ? 'text' : 'password'
         },
+        checkMask(e: KeyboardEvent) {
+            if (!this.mask) {
+                return
+            }
+
+            const regExp = new RegExp(`[^${this.mask}]`)
+            if (e.key.length === 1 && regExp.test(e.key)) {
+                e.preventDefault()
+            }
+        },
         onUpdateValue(e: InputEvent) {
             const target: EventTarget | null = e.target
             let value = this.is_checkbox ? +target?.checked : target?.value
-
-            if (this.mask) {
-                const regExp = new RegExp(`[^${this.mask}]`)
-                value = value.replace(regExp, '')
-            }
 
             this.$emit('update:modelValue', value)
         }
