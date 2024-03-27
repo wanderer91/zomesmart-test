@@ -1,5 +1,5 @@
 <template lang="pug">
-    .content(:style="{'padding-top': is_guest ? 0 : '100px'}")
+    .content(:style="{'padding-top': is_guest ? 0 : '100px', 'padding-bottom': is_guest ? 0 : '50px'}")
         RouterView
 </template>
 

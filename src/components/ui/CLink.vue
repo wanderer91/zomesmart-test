@@ -21,12 +21,17 @@ export default {
         underline: {
             type: Boolean,
             default: false
+        },
+        class: {
+            type: String,
+            default: ''
         }
     },
     emits: ['click'],
     computed: {
         link_class() {
             return {
+                [this.class]: true,
                 'link-grey': this.color === 'grey',
                 'link-underlined': this.underline
             }
@@ -34,7 +39,7 @@ export default {
     },
     methods: {
         handleClick(e: Event) {
-            if (!this.anchor) {
+            if (this.anchor) {
                 e.preventDefault()
             }
             this.$emit('click')

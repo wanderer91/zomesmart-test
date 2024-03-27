@@ -25,7 +25,8 @@
                         CLink(color='grey' :underline="true")
                             template(#content) 59801844
 
-                CButton(type='submit' text='Добавить' :disabled="true")    
+                CButton(type='submit' text='Добавить' :disabled="true")
+        ProductTable
 </template>
 
 <script lang="ts">
@@ -35,7 +36,8 @@ import CForm from '@/components/ui/CForm.vue'
 import CInput from '@/components/ui/CInput.vue'
 import CButton from '@/components/ui/CButton.vue'
 import CLink from '@/components/ui/CLink.vue'
-import { mapState } from 'pinia'
+import ProductTable from '@/components/ProductTable.vue'
+import { mapState, mapActions } from 'pinia'
 import { useAppStore } from '@/stores/app'
 import { useProductStore } from '@/stores/product'
 
@@ -46,18 +48,20 @@ export default {
         CForm,
         CInput,
         CButton,
-        CLink
+        CLink,
+        ProductTable
     },
     computed: {
         ...mapState(useProductStore, ['count', 'products'])
     },
+    methods: {
+        ...mapActions(useAppStore, ['SET_LOADING']),
+        ...mapActions(useProductStore, ['fetchProducts'])
+    },
     async mounted() {
-        const { SET_LOADING } = useAppStore()
-        const { fetchProducts } = useProductStore()
-
-        SET_LOADING(true)
-        await fetchProducts()
-        SET_LOADING(false)
+        this.SET_LOADING(true)
+        await this.fetchProducts()
+        this.SET_LOADING(false)
     }
 }
 </script>

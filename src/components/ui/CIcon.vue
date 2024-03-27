@@ -53,16 +53,41 @@ export default {
         background-image: url('@/assets/notifications.svg');
     }
 
-    &-arrow {
+    &-arrow,
+    &-grey-arrow {
         width: 11px;
         height: 5px;
         background-image: url('@/assets/arrow.svg');
+    }
+
+    &-grey-arrow {
+        background-image: url('@/assets/grey-arrow.svg');
     }
 
     &-help {
         width: 25px;
         height: 25px;
         background-image: url('@/assets/help.svg');
+    }
+
+    &-delete {
+        width: 25px;
+        height: 25px;
+        background-image: url('@/assets/delete.svg');
+    }
+
+    &-left-arrow,
+    &-right-arrow {
+        width: 5px;
+        height: 11px;
+    }
+
+    &-left-arrow {
+        background-image: url('@/assets/left-arrow.svg');
+    }
+
+    &-right-arrow {
+        background-image: url('@/assets/right-arrow.svg');
     }
 
     &-input {

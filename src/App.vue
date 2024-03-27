@@ -39,9 +39,11 @@ export default {
     --color-black-005: rgba(0, 0, 0, 0.05);
     --color-black-016: rgba(0, 0, 0, 0.16);
     --color-black-025: rgba(0, 0, 0, 0.25);
+    --color-black-033: rgba(0, 0, 0, 0.33);
     --color-black-040: rgba(0, 0, 0, 0.4);
     --color-grey: #999999;
     --color-second-grey: #cececf;
+    --color-third-grey: #dad9db;
     --color-grey-016: rgba(30, 52, 71, 0.16);
     --color-light-grey: #f2f2f2;
     --color-second-light-grey: #f2f1f3;
