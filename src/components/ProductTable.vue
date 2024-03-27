@@ -284,7 +284,7 @@ export default {
         &:active,
         &:hover,
         &:visited {
-            color: var(--color-black);
+            color: var(--color-black) !important;
         }
 
         &:hover {
