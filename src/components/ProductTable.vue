@@ -153,6 +153,10 @@ export default {
                 const numIndex = this.selected.findIndex((n) => n === num)
                 this.selected.splice(numIndex, 1)
             }
+
+            if (!this.selected.length) {
+                this.all_selected = false;
+            }
         },
         removeSelected() {
             console.log(`Удалены элементы: [${this.selected.join(', ')}]`)
