@@ -120,7 +120,7 @@ export default {
         },
         onUpdateValue(e: InputEvent) {
             const target: EventTarget | null = e.target
-            let value = this.is_checkbox ? +target?.checked : target?.value
+            let value = this.is_checkbox ? target?.checked : target?.value
 
             this.$emit('update:modelValue', value)
         }

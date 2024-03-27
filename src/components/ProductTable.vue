@@ -6,9 +6,9 @@
                     th(class='product-cell product-table-header')
                         CInput(
                             type='checkbox'
-                            :half_checked="all_selected && selected.length && selected.length !== products.length"
+                            :half_checked="!!all_selected && !!selected.length && selected.length !== products.length"
                             :checked="all_selected || products.length === selected.length"
-                            @update:model-value="val => toggleAll(val, i + 1)"
+                            v-model="all_selected"
                             )
                     th(class='product-cell product-table-header') Images
                     th(class='product-cell product-table-header') Remote ID
@@ -140,7 +140,7 @@ export default {
             }
 
             this.page = page
-            this.selected.splice(0)
+            this.all_selected = false
 
             this.SET_LOADING(true)
             await this.fetchProducts(this.limit * (page - 1))
@@ -152,14 +152,6 @@ export default {
             } else {
                 const numIndex = this.selected.findIndex((n) => n === num)
                 this.selected.splice(numIndex, 1)
-            }
-        },
-        toggleAll(val: number) {
-            this.all_selected = !!val
-            if (val) {
-                this.selected = new Array(this.products.length).fill(0).map((n, i) => i + 1)
-            } else {
-                this.selected.splice(0)
             }
         },
         removeSelected() {
@@ -182,6 +174,14 @@ export default {
             this.selected.map((num) => {
                 this.SET_PRODUCT_MAX_PRICE(num - 1, val)
             })
+        },
+        all_selected(val: boolean) {
+            this.all_selected = val
+            if (val) {
+                this.selected = new Array(this.products.length).fill(0).map((n, i) => i + 1)
+            } else {
+                this.selected.splice(0)
+            }
         }
     }
 }
