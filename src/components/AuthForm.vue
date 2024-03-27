@@ -7,8 +7,8 @@
             CLink
                 template(#content) Зарегистрироваться
         template(#content)        
-            CInput(name='email' type='email' placeholder='yourmail@mail.ru' label='Email' v-model="email")
-            CInput(name='password' type='password' placeholder='Ваш пароль' label='Пароль' v-model="password")
+            CInput(name='email' type='email' placeholder='yourmail@mail.ru' label='Email' v-model="email" :value="email")
+            CInput(name='password' type='password' placeholder='Ваш пароль' label='Пароль' v-model="password" :value="password")
             CLink
                 template(#content)
                     span Забыли пароль?

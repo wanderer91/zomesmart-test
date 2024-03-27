@@ -76,6 +76,12 @@ export default {
         background-image: url('@/assets/delete.svg');
     }
 
+    &-bold-delete {
+        width: 13px;
+        height: 15px;
+        background-image: url('@/assets/bold-delete.svg');
+    }
+
     &-left-arrow,
     &-right-arrow {
         width: 5px;

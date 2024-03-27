@@ -39,6 +39,18 @@ export const useProductStore = defineStore('product', {
             this.products = products
             this.count = count
         },
+        SET_PRODUCT(num: number, product: Product) {
+            this.products[num] = product
+        },
+        SET_PRODUCT_MIN_PRICE(num: number, value: number | null) {
+            const product: Product = this.products[num]
+            product.min_price = value
+            this.SET_PRODUCT(num, product)
+        },
+        SET_PRODUCT_MAX_PRICE(num: number, value: number | null) {
+            const product: Product = this.products[num]
+            product.max_price = value
+        },
         SET_CALL_COUNT(count: number = 0) {
             this.call_count = count
         }

@@ -9,9 +9,6 @@
 </template>
 
 <script lang="ts">
-import CInput from '@/components/ui/CInput.vue'
-import CButton from '@/components/ui/CButton.vue'
-
 export default {
     props: {
         class: {
@@ -22,10 +19,6 @@ export default {
             type: Boolean,
             default: false
         }
-    },
-    components: {
-        CInput,
-        CButton
     },
     emits: ['submit'],
     methods: {

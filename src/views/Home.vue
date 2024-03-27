@@ -16,13 +16,13 @@
                     )
                     template(#note)
                         span Например ваши товары:&nbsp;
-                        CLink(color='grey' :underline="true")
+                        CLink(color='grey' :underline="true" :anchor="true")
                             template(#content) 119203059
                         span ,&nbsp;
-                        CLink(color='grey' :underline="true")
+                        CLink(color='grey' :underline="true" :anchor="true")
                             template(#content) 124366343
                         span ,&nbsp;
-                        CLink(color='grey' :underline="true")
+                        CLink(color='grey' :underline="true" :anchor="true")
                             template(#content) 59801844
 
                 CButton(type='submit' text='Добавить' :disabled="true")
